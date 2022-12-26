@@ -11,24 +11,25 @@ class game:
         self.player2history = {'a':0, 'b':0, 'c':0, '1':0, '2':0, '3':0}
 
     def printBoard(self):
-        print('------')
-        for i in self.board:
-            line = ''
+        print('    A   B   C  ')
+        print('  +---+---+---+')
+        for rownum, i in enumerate(self.board):
+            line = str(rownum + 1) + ' |'
             for j in i:
                 if j == 1:
-                    line += 'X '
+                    line += ' X |'
                 elif j == -1:
-                    line += 'O '
+                    line += ' O |'
                 else:
-                    line += '_ '
+                    line += '   |'
             print(line)
-            print('------')
+            print('  +---+---+---+')
     def makeAMove(self, move):
         #check if selected move is available
 
-        if self.board[self.refchart(move[0])][int(move[1])-1]==0:
+        if self.board[self.refchart[move[0]]][int(move[1])-1]==0:
             #available
-            self.board[move[0], move[1]]=self.current_player
+            self.board[self.refchart[move[0]]][int(move[1])-1]=self.current_player
             self.current_player *= -1
         else:
             print("Error: space not available")
